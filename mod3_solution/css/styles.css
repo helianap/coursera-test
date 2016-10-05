@@ -174,7 +174,7 @@ body {
   background-color:lightgray;
   margin-top:10px;
   margin-bottom:10px;
-  
+  min-height:700px;
 }
 .category-tile span {
   position: relative;
@@ -190,7 +190,7 @@ body {
 }
 
 
-#menu-categories-title  {
+#OurMenu  {
   margin-top: 60px;
   display:block;
 }
