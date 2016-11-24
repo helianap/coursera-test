@@ -22,6 +22,7 @@
                     if(foodItems[i].trim()!="")
                         total++;
                 }
+
                 if (total === 0 ){
                     $scope.message = 'Please enter data first';
                     $scope.selectedcss = 'red';
