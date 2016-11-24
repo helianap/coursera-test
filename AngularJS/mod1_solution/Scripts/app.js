@@ -22,7 +22,7 @@
                     if(foodItems[i].trim()!="")
                         total++;
                 }
-                if (total <= 3) {
+                if (total <= 3 & total > 0) {
                     $scope.message = 'Enjoy!';
                     $scope.selectedcss = 'green';
                 }
