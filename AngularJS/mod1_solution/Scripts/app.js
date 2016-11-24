@@ -22,12 +22,15 @@
                     if(foodItems[i].trim()!="")
                         total++;
                 }
-                if (total <= 3 & total > 0) {
+                if (total === 0 ){
+                    $scope.message = 'Please enter data first';
+                    $scope.selectedcss = 'red';
+                }
+                else if (total <= 3 & total > 0) {
                     $scope.message = 'Enjoy!';
                     $scope.selectedcss = 'green';
-                }
-                    
-                else{
+                }                   
+                else if (total > 3){
                     $scope.message = 'Too much!';
                     $scope.selectedcss = 'green';
                 }
