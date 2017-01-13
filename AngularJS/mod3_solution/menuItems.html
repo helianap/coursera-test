@@ -1,9 +1,9 @@
 <ul>
-    <li ng-repeat="menu_item in list.menu_items">
+    <li ng-repeat="menu_item in menu.menu_items">
 
         ({{menu_item.short_name}}) - {{menu_item.name }} - {{menu_item.description}}
-        <button ng-click="list.Remove({index: $index});">Don't want this one!</button>
+        <button ng-click="menu.Remove({index: $index});">Don't want this one!</button>
     </li>
 
 </ul>
-<div class="error" ng-if="list.nothingFoundInList()">Nothing found!</div>
+<div class="error" ng-if="menu.nothingFoundInList()">Nothing found!</div>
