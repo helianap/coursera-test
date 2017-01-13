@@ -20,16 +20,16 @@
         return ddo;
     }
 
-    function FoundItemsDirectiveController() {
-        var menu = this;
+    //function FoundItemsDirectiveController() {
+    //    var menu = this;
 
-        menu.nothingFoundInList = function () {
-            if(menu.items.length == 0)
-                      return true;
-             else
-                      return false;
-        };
-    }
+    //    menu.nothingFoundInList = function () {
+    //        if(menu.items.length == 0)
+    //                  return true;
+    //         else
+    //                  return false;
+    //    };
+    //}
 
    
     NarrowItDownController.$inject = ['MenuSearchService'];
