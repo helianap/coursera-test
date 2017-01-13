@@ -1,9 +1,11 @@
-<ul>
-    <li ng-repeat="menu_item in menu.menu_items">
+<div class="results">
+    <ul>
+        <li ng-repeat="item in list.items">
 
-        ({{menu_item.short_name}}) - {{menu_item.name }} - {{menu_item.description}}
-        <button ng-click="menu.Remove({index: $index});">Don't want this one!</button>
-    </li>
+            ({{item.short_name}}) - {{item.name }} - {{item.description}}
+            <button ng-click="list.onRemove({index: $index});">Don't want this one!</button>
+        </li>
 
-</ul>
-<div class="error" ng-if="menu.nothingFoundInList()">Nothing found!</div>
+    </ul>
+    <div class="error" ng-if="!list.items.length">Nothing found!</div>
+</div>

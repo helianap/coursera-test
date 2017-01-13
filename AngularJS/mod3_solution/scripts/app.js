@@ -12,24 +12,26 @@
         var ddo = {
             templateUrl: 'menuItems.html',
             scope: {
-                menu: '=myList'
-                //remove: '<'
-            }
-         };
-
+                items: '<',
+                onRemove: '&'
+            },
+            // // controller: 'ShoppingListDirectiveController as list',
+            controller: FoundItemsDirectiveController,
+            //  controller: NarrowItDownController,
+            controllerAs: 'list',
+            bindToController: true
+        };
         return ddo;
     }
 
-    //function FoundItemsDirectiveController() {
-    //    var menu = this;
+    function FoundItemsDirectiveController() {
+        var menu = this;
 
-    //    menu.nothingFoundInList = function () {
-    //        if(menu.items.length == 0)
-    //                  return true;
-    //         else
-    //                  return false;
-    //    };
-    //}
+        menu.items = [];
+
+        menu.searched = false;
+    }
+
 
    
     NarrowItDownController.$inject = ['MenuSearchService'];
@@ -41,44 +43,39 @@
 
         menu.searchTerm = "";
 
-        menu.Remove = function (itemIndex) {
-
-            found.splice(itemIndex, 1);
-        };
-
-        menu.nothingFoundInList = function()
-       {
-
-            if (found.length == 0)
-                return true;
-            else
-                return false;
-       };
-               
+        menu.removeItem = function (index) {
+            menu.items.splice(index, 1);
+        }
+                  
         
         menu.getMatchedMenuItems = function () {
+          
+            if (menu.searchTerm)
+            {
+                var promise = MenuSearchService.getMatchedMenuItems(menu.searchTerm);
 
-            var promise = MenuSearchService.getMatchedMenuItems(menu.searchTerm);
+                promise.then(function (response) {
 
-            promise.then(function (response) {
+                    found = [];
 
-                found = [];
-  
-                for (var i = 0; i < response.data.menu_items.length; i++) {
+                    for (var i = 0; i < response.data.menu_items.length; i++) {
 
-                    if (response.data.menu_items[i].description.toLowerCase().indexOf(menu.searchTerm.toLowerCase()) != -1) {
-                        found.push(response.data.menu_items[i]);
+                        if (response.data.menu_items[i].description.toLowerCase().indexOf(menu.searchTerm.toLowerCase()) != -1) {
+                            found.push(response.data.menu_items[i]);
+                        }
                     }
-                }
 
-                menu.menu_item = found;
+                    menu.items = found;
+                    menu.searched = true;
+                    console.log(menu.items);
+                    console.log(menu.items.length);
+                })
+                .catch(function (error) {
+                    console.log("Error occurred");
+                });
 
-                console.log(found)
-            })
-            .catch(function (error) {
-                console.log("Error occurred");
-            });
-
+            }
+            
         }
     };
 
