@@ -15,9 +15,7 @@
                 items: '<',
                 onRemove: '&'
             },
-            // // controller: 'ShoppingListDirectiveController as list',
             controller: FoundItemsDirectiveController,
-            //  controller: NarrowItDownController,
             controllerAs: 'list',
             bindToController: true
         };
